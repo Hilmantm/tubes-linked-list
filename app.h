@@ -34,5 +34,7 @@ adr_event createElmEvent(event event);
 void insertEvent(events &events, adr_event adrEvent);
 void deleteFirstEvent(events &events, adr_event &adrEvent);
 void deleteLastEvent(events &events, adr_event &adrEvent);
+void showEvents(events events);
+void printEvent(event event);
 
 #endif //LINKED_LIST_APP_H

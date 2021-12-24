@@ -87,5 +87,29 @@ void deleteLastEvent(events &events, adr_event &adrEvent) {
     }
 }
 
+void showEvents(events events) {
+    if(first(events) == NULL && last(events) == NULL) {
+        cout << "Tidak ada event tersedia" << endl << endl;
+    } else {
+        adr_event p = first(events);
+        int counter = 1;
+        while(next(p) != first(events)) {
+            cout << "========== Event " << counter << " ==========" << endl;
+            event temp = info(p);
+            printEvent(temp);
+            counter += 1;
+            p = next(p);
+        }
+        cout << "========== Event " << counter << " ==========" << endl;
+        printEvent(info(p));
+    }
+}
 
-
+void printEvent(event event) {
+    cout << "Nama Event : " << event.nama_event << endl;
+    cout << "Jenis Event : " << event.jenis_event << endl;
+    cout << "Tanggal Pelaksanaan : " << event.tanggal_pelaksanaan << endl;
+    cout << "Tempat Pelaksanaan : " << event.tempat_pelaksanaan << endl;
+    cout << "Quota Maks : " << event.quota_maks << endl;
+    cout << "Jumlah Peserta : " << event.jumlah << endl;
+}
