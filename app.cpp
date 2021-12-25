@@ -56,6 +56,7 @@ void insertEvent(events &events, adr_event adrEvent) {
         prev(adrEvent) = last(events);
         next(last(events)) = adrEvent;
         last(events) = adrEvent;
+        prev(first(events)) = last(events);
     }
 }
 
