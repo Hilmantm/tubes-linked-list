@@ -40,6 +40,7 @@ void insertEvent(events &events, adr_event adrEvent);
 void deleteFirstEvent(events &events, adr_event &adrEvent);
 void deleteLastEvent(events &events, adr_event &adrEvent);
 void deleteAfterEvent(adr_event adrEventPrec, adr_event &adrEvent);
+void deleteEvent(events &events, string eventName, adr_event &deletedEvent);
 void showEvents(events events);
 void printEvent(event event);
 adr_event searchEvent(events events, string eventName);

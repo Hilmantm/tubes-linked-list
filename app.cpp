@@ -102,6 +102,28 @@ void deleteAfterEvent(adr_event adrEventPrec, adr_event &adrEvent) {
     next(adrEvent) = NULL;
 }
 
+void deleteEvent(events &events, string eventName, adr_event &deletedEvent) {
+    // search the event
+    adr_event searchEventData = searchEvent(events, eventName);
+
+    // check event position
+    if(searchEventData != NULL) {
+        // checking order
+        // - if the searchEventData is in first order
+        // - if the searchEventData is in last order
+        // - if the searchEventData is in middle order
+        if(searchEventData == first(events)) {
+            deleteFirstEvent(events, deletedEvent);
+        } else if(searchEventData == last(events) && next(searchEventData) == first(events)) {
+            deleteLastEvent(events, deletedEvent);
+        } else {
+            deleteAfterEvent(prev(searchEventData), deletedEvent);
+        }
+    } else {
+        cout << "Event yang dicari tidak ada" << endl << endl;
+    }
+}
+
 void showEvents(events events) {
     if(first(events) == NULL && last(events) == NULL) {
         cout << "Tidak ada event tersedia" << endl << endl;
