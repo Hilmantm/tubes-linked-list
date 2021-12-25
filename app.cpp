@@ -120,6 +120,29 @@ void printEvent(event event) {
     cout << "Jumlah Peserta : " << event.jumlah << endl;
 }
 
+adr_event searchEvent(events events, string eventName) {
+    adr_event found = NULL;
+
+    if(first(events) == NULL && last(events) == NULL) {
+        cout << "Event yang dicari tidak ada" << endl << endl;
+    } else {
+        adr_event p = first(events);
+        while(next(p) != first(events) && found == NULL) {
+            // do this logic here
+            if(info(p).nama_event == eventName) {
+                found = p;
+            }
+            p = next(p);
+        }
+        // do this logic here
+        if(found == NULL && info(p).nama_event == eventName) {
+            found = p;
+        }
+    }
+
+    return found;
+}
+
 void createParticipants(participants &participants) {
     first(participants) = NULL;
     last(participants) = NULL;
@@ -168,4 +191,3 @@ void printParticipant(participant participant) {
     cout << "Jenis peserta :" << participant.jenis_peserta << endl;
     cout << "Nomor telpon :" << participant.no_telp << endl;
 }
-
