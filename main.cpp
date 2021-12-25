@@ -48,21 +48,20 @@ int main() {
                 break;
             }
             case REMOVE_EVENT: {
-                adr_event removeEvent, eventSearch;
+                adr_event deletedEvent, searchDeletedEvent;
                 string eventName;
 
                 cout << "Masukkan nama event yang ingin dihapus : "; cin.ignore(); getline(cin, eventName);
                 cout << "event yang ingin dihapus : " << eventName << endl;
-                eventSearch = searchEvent(eventList, eventName);
-                cout << eventSearch << endl;
-                if(eventSearch != NULL) {
-                    printEvent(info(eventSearch));
-                    cout << "====== prev ======" << endl;
-                    printEvent(info(prev(eventSearch)));
-                }
+                deleteEvent(eventList, eventName, deletedEvent);
 
-                // deleteFirstEvent(eventList, removeEvent);
-                // deleteLastEvent(eventList, removeEvent);
+                // confirm delete procedure by search event name again
+                searchDeletedEvent = searchEvent(eventList, eventName);
+
+                // if search result is null, delete procedure success
+                if(searchDeletedEvent == NULL) {
+                    cout << "Success delete " << eventName << endl;
+                }
                 break;
             }
             case SHOW_AVAILABLE_EVENTS: {
