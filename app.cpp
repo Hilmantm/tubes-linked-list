@@ -132,8 +132,7 @@ void showEvents(events events) {
         int counter = 1;
         while(next(p) != first(events)) {
             cout << "========== Event " << counter << " ==========" << endl;
-            event temp = info(p);
-            printEvent(temp);
+            printEvent(info(p));
             counter += 1;
             p = next(p);
         }
