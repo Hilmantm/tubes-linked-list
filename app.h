@@ -37,4 +37,10 @@ void deleteLastEvent(events &events, adr_event &adrEvent);
 void showEvents(events events);
 void printEvent(event event);
 
+void createParticipants(participants &participants);
+adr_participant createElmParticipant(participant participant);
+void insertParticipant(participants &participants, adr_participant adrParticipant);
+void showParticipants(participants participants);
+void printParticipant(participant participant);
+
 #endif //LINKED_LIST_APP_H

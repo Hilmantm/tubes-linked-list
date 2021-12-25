@@ -113,3 +113,53 @@ void printEvent(event event) {
     cout << "Quota Maks : " << event.quota_maks << endl;
     cout << "Jumlah Peserta : " << event.jumlah << endl;
 }
+
+void createParticipants(participants &participants) {
+    first(participants) = NULL;
+    last(participants) = NULL;
+}
+
+adr_participant createElmParticipant(participant participant) {
+    adr_participant newParticipant = new elmParticipant;
+    info(newParticipant) = participant;
+    next(newParticipant) = NULL;
+    prev(newParticipant) = NULL;
+    return newParticipant;
+}
+
+void insertParticipant(participants &participants, adr_participant adrParticipant) {
+    if(first(participants) == NULL && last(participants) == NULL){
+        first(participants) = adrParticipant;
+        last(participants) = adrParticipant;
+    }else{
+        prev(adrParticipant) = last(participants);
+        next(last(participants)) = adrParticipant;
+        last(participants) = adrParticipant;
+    }
+}
+
+void showParticipants(participants participants) {
+    adr_participant adrParticipant;
+
+    if(first(participants) == NULL && last(participants) == NULL){
+        cout << "Empty List" << endl;
+    }else{
+        adrParticipant = first(participants);
+        while(adrParticipant != NULL){
+            printParticipant(info(adrParticipant));
+            cout << endl;
+            adrParticipant = next(adrParticipant);
+        }
+    }
+    cout << endl;
+}
+
+void printParticipant(participant participant) {
+    cout << "Nomor peserta :" << participant.no_peserta << endl;
+    cout << "Nomor tempat duduk :" << participant.no_tempat_duduk << endl;
+    cout << "Nama peserta :" << participant.nama_peserta << endl;
+    cout << "Email :" << participant.email << endl;
+    cout << "Jenis peserta :" << participant.jenis_peserta << endl;
+    cout << "Nomor telpon :" << participant.no_telp << endl;
+}
+
