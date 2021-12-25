@@ -204,20 +204,21 @@ void showParticipants(participants participants) {
         cout << "Empty List" << endl;
     }else{
         adrParticipant = first(participants);
+        int counter = 1;
         while(adrParticipant != NULL){
+            cout << "============= Peserta " << counter << " =============" << endl;
             printParticipant(info(adrParticipant));
-            cout << endl;
+            counter += 1;
             adrParticipant = next(adrParticipant);
         }
     }
-    cout << endl;
 }
 
 void printParticipant(participant participant) {
-    cout << "Nomor peserta :" << participant.no_peserta << endl;
-    cout << "Nomor tempat duduk :" << participant.no_tempat_duduk << endl;
-    cout << "Nama peserta :" << participant.nama_peserta << endl;
-    cout << "Email :" << participant.email << endl;
-    cout << "Jenis peserta :" << participant.jenis_peserta << endl;
-    cout << "Nomor telpon :" << participant.no_telp << endl;
+    cout << "Nomor peserta : " << participant.no_peserta << endl;
+    cout << "Nomor tempat duduk : " << participant.no_tempat_duduk << endl;
+    cout << "Nama peserta : " << participant.nama_peserta << endl;
+    cout << "Email : " << participant.email << endl;
+    cout << "Jenis peserta : " << participant.jenis_peserta << endl;
+    cout << "Nomor telpon : " << participant.no_telp << endl;
 }
