@@ -9,14 +9,25 @@ using namespace std;
 
 void showMenu() {
     cout << "=============== MENU ===============" << endl;
+    cout << JOIN_EVENT << ". Join event" << endl;
+    cout << CANCEL_JOIN_EVENT << ". Batalkan event"<< endl;
     cout << ADD_EVENT << ". Tambahkan event baru" << endl;
     cout << REMOVE_EVENT << ". Hapus event" << endl;
-    cout << SHOW_EVENT << ". Tampilkan semua event" << endl;
-    cout << SHOW_PARTICIPANT << ". Tampilkan peserta dari sebuah event" << endl;
-    cout << ADD_PESERTA << ". Tambahkan Data Pesera" << endl;
-    cout << SHOW_PESERTA << ". Tampilkan data peserta" << endl;
-    cout << SEARCH_EVENT << ". Mencari EVENT"<< endl;
+    cout << SHOW_AVAILABLE_EVENTS << ". Tampilkan event yang masih tersedia" << endl;
+    cout << SHOW_EVENTS_WITH_PARTICIPANT << ". Tampilkan event beserta peserta" << endl;
+    cout << SHOW_PARTICIPANTS_IN_AN_EVENT << ". Tampilkan peserta dari sebuah event" << endl;
+    cout << SEARCH_PARTICIPANT_IN_AN_EVENT << ". Cari peserta dari sebuah event" << endl;
+    cout << ADD_PARTICIPANT << ". Tambahkan peserta baru" << endl;
+    cout << REMOVE_PARTICIPANT << ". Hapus peserta" << endl;
+    cout << SHOW_PARTICIPANTS << ". Tampilkan semua peserta (development)" << endl;
+    cout << SHOW_EVENTS << ". Tampilkan semua event (development)" << endl;
+//    cout << SHOW_EVENT << ". Tampilkan semua event" << endl;
+//    cout << SHOW_PARTICIPANT << ". Tampilkan peserta dari sebuah event" << endl;
+//    cout << ADD_PARTICIPANT << ". Tambahkan Data Pesera" << endl;
+//    cout << SHOW_PESERTA << ". Tampilkan data peserta" << endl;
+//    cout << SEARCH_EVENT << ". Mencari EVENT"<< endl;
     cout << EXIT << ". Keluar" << endl;
+    cout << "====================================" << endl;
 }
 
 void createEvents(events &events) {

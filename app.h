@@ -19,13 +19,18 @@ using namespace std;
 #define last(H) ((H).last)
 
 const int EXIT = 0;
-const int ADD_EVENT = 1;
-const int REMOVE_EVENT = 2;
-const int SHOW_EVENT = 3;
-const int SHOW_PARTICIPANT = 4;
-const int ADD_PESERTA = 5;
-const int SHOW_PESERTA = 6;
-const int SEARCH_EVENT = 7;
+const int JOIN_EVENT = 1;
+const int CANCEL_JOIN_EVENT = 2;
+const int ADD_EVENT = 3;
+const int REMOVE_EVENT = 4;
+const int SHOW_AVAILABLE_EVENTS = 5;
+const int SHOW_EVENTS_WITH_PARTICIPANT = 6;
+const int SHOW_PARTICIPANTS_IN_AN_EVENT = 7;
+const int SEARCH_PARTICIPANT_IN_AN_EVENT = 8;
+const int ADD_PARTICIPANT = 9;
+const int REMOVE_PARTICIPANT = 10;
+const int SHOW_PARTICIPANTS = 11; // This feature only use for development process
+const int SHOW_EVENTS = 12; // This feature only use for development process
 
 void showMenu();
 
