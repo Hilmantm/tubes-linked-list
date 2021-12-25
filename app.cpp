@@ -120,7 +120,7 @@ void printEvent(event event) {
     cout << "Jumlah Peserta : " << event.jumlah << endl;
 }
 
-adr_event searchEvent(events events, string eventName) {
+adr_event searchEvent(events events, string eventName, adr_event &eventPrec) {
     adr_event found = NULL;
 
     if(first(events) == NULL && last(events) == NULL) {
@@ -131,12 +131,14 @@ adr_event searchEvent(events events, string eventName) {
             // do this logic here
             if(info(p).nama_event == eventName) {
                 found = p;
+                eventPrec = prev(found);
             }
             p = next(p);
         }
         // do this logic here
         if(found == NULL && info(p).nama_event == eventName) {
             found = p;
+            eventPrec = prev(found);
         }
     }
 

@@ -41,7 +41,7 @@ void deleteFirstEvent(events &events, adr_event &adrEvent);
 void deleteLastEvent(events &events, adr_event &adrEvent);
 void showEvents(events events);
 void printEvent(event event);
-adr_event searchEvent(events events, string eventName);
+adr_event searchEvent(events events, string eventName, adr_event &eventPrec);
 
 void createParticipants(participants &participants);
 adr_participant createElmParticipant(participant participant);
