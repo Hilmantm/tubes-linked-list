@@ -81,33 +81,22 @@ int main() {
                 break;
             }
             case ADD_PARTICIPANT: {
-                int i, jumlah_peserta;
-                int no_peserta, no_tempat_duduk;
-                string nama_peserta, email, jenis_peserta, no_telp;
-                i = 0;
+                int totalParticipant;
+                participant newParticipant;
+                adr_participant newParticipantElm;
 
-                cout << "Masukkan Jumlah peserta : ";
-                cin >> jumlah_peserta;
-
-                while (i < jumlah_peserta){
-                    participant new_peserta;
-                    cout << "masukkan nomor peserta :";
-                    cin >> new_peserta.no_peserta;
-                    cout << "masukkan no tempat duduk :";
-                    cin >> new_peserta.no_tempat_duduk;
-                    cout << "masukkan nama peserta :";
-                    cin >> new_peserta.nama_peserta;
-                    cout << "masukkan email : ";
-                    cin >> new_peserta.email;
-                    cout << "masukkan jenis peserta :";
-                    cin >> new_peserta.jenis_peserta;
-                    cout << "masukkan no telpon :";
-                    cin >> new_peserta.no_telp;
-                    cout << "====================="<<endl;
-                    adr_participant AdrPeserta;
-                    AdrPeserta = createElmParticipant(new_peserta);
-                    insertParticipant(participantsList, AdrPeserta);
-                    i++;
+                cout << "Masukkan Jumlah peserta : "; cin >> totalParticipant;
+                for(int i = 0; i < totalParticipant; i++) {
+                    int counter = i + 1;
+                    cout << "============= Peserta " << counter << " =============" << endl;
+                    cout << "masukkan nomor peserta : "; cin >> newParticipant.no_peserta;
+                    cout << "masukkan no tempat duduk : "; cin >> newParticipant.no_tempat_duduk;
+                    cout << "masukkan nama peserta : "; cin.ignore(); getline(cin, newParticipant.nama_peserta);
+                    cout << "masukkan email : "; cin >> newParticipant.email;
+                    cout << "masukkan jenis peserta : "; cin.ignore(); getline(cin, newParticipant.jenis_peserta);
+                    cout << "masukkan no telpon : "; cin >> newParticipant.no_telp;
+                    newParticipantElm = createElmParticipant(newParticipant);
+                    insertParticipant(participantsList, newParticipantElm);
                 }
                 break;
             }
