@@ -94,6 +94,14 @@ void deleteLastEvent(events &events, adr_event &adrEvent) {
     }
 }
 
+void deleteAfterEvent(adr_event adrEventPrec, adr_event &adrEvent) {
+    adrEvent = next(adrEventPrec);
+    next(adrEventPrec) = next(adrEvent);
+    prev(next(adrEvent)) = adrEventPrec;
+    prev(adrEvent) = NULL;
+    next(adrEvent) = NULL;
+}
+
 void showEvents(events events) {
     if(first(events) == NULL && last(events) == NULL) {
         cout << "Tidak ada event tersedia" << endl << endl;

@@ -39,6 +39,7 @@ adr_event createElmEvent(event event);
 void insertEvent(events &events, adr_event adrEvent);
 void deleteFirstEvent(events &events, adr_event &adrEvent);
 void deleteLastEvent(events &events, adr_event &adrEvent);
+void deleteAfterEvent(adr_event adrEventPrec, adr_event &adrEvent);
 void showEvents(events events);
 void printEvent(event event);
 adr_event searchEvent(events events, string eventName);
