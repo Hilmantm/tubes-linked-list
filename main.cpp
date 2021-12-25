@@ -22,6 +22,14 @@ int main() {
     cout << "Pilih Menu : "; cin >> choose;
     while(choose != EXIT) {
         switch(choose) {
+            case JOIN_EVENT: {
+                cout << "JOIN EVENT" << endl;
+                break;
+            }
+            case CANCEL_JOIN_EVENT: {
+                cout << "CANCEL JOIN EVENT" << endl;
+                break;
+            }
             case ADD_EVENT: {
                 string tanggal, bulan, tahun;
                 event newEvent;
@@ -48,15 +56,23 @@ int main() {
                 deleteLastEvent(eventList, removeEvent);
                 break;
             }
-            case SHOW_EVENT: {
-                showEvents(eventList);
+            case SHOW_AVAILABLE_EVENTS: {
+                cout << "SHOW AVAILABLE EVENT" << endl;
                 break;
             }
-            case SHOW_PARTICIPANT: {
-                cout << "SHOW PARTICIPANT" << endl;
+            case SHOW_EVENTS_WITH_PARTICIPANT: {
+                cout << "SHOW EVENTS WITH PARTICIPANT" << endl;
                 break;
             }
-            case ADD_PESERTA: {
+            case SHOW_PARTICIPANTS_IN_AN_EVENT: {
+                cout << "SHOW PARTICIPANTS IN AN EVENT" << endl;
+                break;
+            }
+            case SEARCH_PARTICIPANT_IN_AN_EVENT: {
+                cout << "SHOW PARTICIPANTS IN AN EVENT" << endl;
+                break;
+            }
+            case ADD_PARTICIPANT: {
                 int i, jumlah_peserta;
                 int no_peserta, no_tempat_duduk;
                 string nama_peserta, email, jenis_peserta, no_telp;
@@ -87,18 +103,16 @@ int main() {
                 }
                 break;
             }
-            case SHOW_PESERTA: {
-                cout << "================"<<endl;
-                // showPeserta(participantsList);
+            case REMOVE_PARTICIPANT: {
+                cout << "REMOVE PARTICIPANT" << endl;
                 break;
             }
-            case SEARCH_EVENT: {
-                adr_event P;
-                string nama;
-                cout << "Masukkan Nama Event";
-                cin >> nama;
-                P = searchElm(eventList,nama);
-                cout << info(P).nama_event << endl;
+            case SHOW_PARTICIPANTS: {
+                showParticipants(participantsList);
+                break;
+            }
+            case SHOW_EVENTS: {
+                showEvents(eventList);
                 break;
             }
         }
