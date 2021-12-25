@@ -21,11 +21,6 @@ void showMenu() {
     cout << REMOVE_PARTICIPANT << ". Hapus peserta" << endl;
     cout << SHOW_PARTICIPANTS << ". Tampilkan semua peserta (development)" << endl;
     cout << SHOW_EVENTS << ". Tampilkan semua event (development)" << endl;
-//    cout << SHOW_EVENT << ". Tampilkan semua event" << endl;
-//    cout << SHOW_PARTICIPANT << ". Tampilkan peserta dari sebuah event" << endl;
-//    cout << ADD_PARTICIPANT << ". Tambahkan Data Pesera" << endl;
-//    cout << SHOW_PESERTA << ". Tampilkan data peserta" << endl;
-//    cout << SEARCH_EVENT << ". Mencari EVENT"<< endl;
     cout << EXIT << ". Keluar" << endl;
     cout << "====================================" << endl;
 }
