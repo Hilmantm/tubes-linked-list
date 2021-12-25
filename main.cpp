@@ -80,7 +80,7 @@ int main() {
                 cout << "SHOW PARTICIPANTS IN AN EVENT" << endl;
                 break;
             }
-            case ADD_PARTICIPANT: {
+            case REGISTER_PARTICIPANT: {
                 int totalParticipant;
                 participant newParticipant;
                 adr_participant newParticipantElm;

@@ -17,7 +17,7 @@ void showMenu() {
     cout << SHOW_EVENTS_WITH_PARTICIPANT << ". Tampilkan event beserta peserta" << endl;
     cout << SHOW_PARTICIPANTS_IN_AN_EVENT << ". Tampilkan peserta dari sebuah event" << endl;
     cout << SEARCH_PARTICIPANT_IN_AN_EVENT << ". Cari peserta dari sebuah event" << endl;
-    cout << ADD_PARTICIPANT << ". Tambahkan peserta baru" << endl;
+    cout << REGISTER_PARTICIPANT << ". Register peserta baru" << endl;
     cout << REMOVE_PARTICIPANT << ". Hapus peserta" << endl;
     cout << SHOW_PARTICIPANTS << ". Tampilkan semua peserta (development)" << endl;
     cout << SHOW_EVENTS << ". Tampilkan semua event (development)" << endl;
