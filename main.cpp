@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include "app.h"
 
 using namespace std;
@@ -35,13 +36,10 @@ int main() {
                 event newEvent;
                 adr_event newEventElm;
 
-                cout << "Nama event : "; cin >> newEvent.nama_event;
-                cout << "Jenis event : "; cin >> newEvent.jenis_event;
-                cout << "Tanggal pelaksanaan : "; cin >> tanggal;
-                cout << "Bulan pelaksanaan : "; cin >> bulan;
-                cout << "Tahun pelaksanaan : "; cin >> tahun;
-                newEvent.tanggal_pelaksanaan = tanggal + " " + bulan + " " + tahun;
-                cout << "Tempat pelaksanaan : "; cin >> newEvent.tempat_pelaksanaan;
+                cout << "Nama event : "; cin.ignore(); getline(cin, newEvent.nama_event);
+                cout << "Jenis event : "; getline(cin, newEvent.jenis_event);
+                cout << "Tanggal pelaksanaan : "; getline(cin, newEvent.tanggal_pelaksanaan);
+                cout << "Tempat pelaksanaan : "; getline(cin, newEvent.tempat_pelaksanaan);
                 cout << "Quota Maks : "; cin >> newEvent.quota_maks;
                 newEvent.jumlah = 0;
 
@@ -50,10 +48,21 @@ int main() {
                 break;
             }
             case REMOVE_EVENT: {
-                adr_event removeEvent;
-                cout << "REMOVE EVENT" << endl;
+                adr_event removeEvent, eventSearch;
+                string eventName;
+
+                cout << "Masukkan nama event yang ingin dihapus : "; cin.ignore(); getline(cin, eventName);
+                cout << "event yang ingin dihapus : " << eventName << endl;
+                eventSearch = searchEvent(eventList, eventName);
+                cout << eventSearch << endl;
+                if(eventSearch != NULL) {
+                    printEvent(info(eventSearch));
+                    cout << "====== prev ======" << endl;
+                    printEvent(info(prev(eventSearch)));
+                }
+
                 // deleteFirstEvent(eventList, removeEvent);
-                deleteLastEvent(eventList, removeEvent);
+                // deleteLastEvent(eventList, removeEvent);
                 break;
             }
             case SHOW_AVAILABLE_EVENTS: {
