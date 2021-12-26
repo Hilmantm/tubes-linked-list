@@ -41,6 +41,7 @@ adr_event createElmEvent(event event) {
     next(p) = NULL;
     prev(p) = NULL;
     participant(p) = NULL;
+    lastParticipant(p) = NULL;
 
     return p;
 }
@@ -124,20 +125,75 @@ void deleteEvent(events &events, string eventName, adr_event &deletedEvent) {
     }
 }
 
-void showEvents(events events) {
-    if(first(events) == NULL && last(events) == NULL) {
-        cout << "Tidak ada event tersedia" << endl << endl;
-    } else {
-        adr_event p = first(events);
-        int counter = 1;
-        while(next(p) != first(events)) {
-            cout << "========== Event " << counter << " ==========" << endl;
-            printEvent(info(p));
-            counter += 1;
-            p = next(p);
+void showEvents(events events, int showFlag, bool eventData, bool eventParticipant) {
+    // can use this function if one of param
+    // eventData and eventParticipant
+    // is true
+    if(eventData || eventParticipant) {
+        if(first(events) == NULL && last(events) == NULL) {
+            cout << "Tidak ada event tersedia" << endl << endl;
+        } else {
+            adr_event p = first(events);
+            int counter = 1;
+            while(next(p) != first(events)) {
+                showEventWithFlag(p, showFlag, eventData, eventParticipant, counter);
+                counter += 1;
+                p = next(p);
+            }
+            showEventWithFlag(p, showFlag, eventData, eventParticipant, counter);
         }
-        cout << "========== Event " << counter << " ==========" << endl;
-        printEvent(info(p));
+    } else {
+        cout << "Can't use this function because one of parameter "
+                "between eventData and eventParticipant should true" << endl;
+        return;
+    }
+}
+
+void showEventWithFlag(adr_event currentEvent, int showFlag, bool eventData, bool eventParticipant, int counter) {
+    switch (showFlag) {
+        case SHOW_ALL: {
+            if(eventData && eventParticipant) {
+                cout << "========== Event " << counter << " ==========" << endl;
+                printEvent(info(currentEvent));
+                showParticipantsInEvent(currentEvent);
+            } else if(eventData) {
+                cout << "========== Event " << counter << " ==========" << endl;
+                printEvent(info(currentEvent));
+            } else if(eventParticipant) {
+                showParticipantsInEvent(currentEvent);
+            }
+            break;
+        }
+        case SHOW_ONLY_AVAILABLE: {
+            if(info(currentEvent).jumlah < info(currentEvent).quota_maks) {
+                if(eventData && eventParticipant) {
+                    cout << "========== Event " << counter << " ==========" << endl;
+                    printEvent(info(currentEvent));
+                    showParticipantsInEvent(currentEvent);
+                } else if(eventData) {
+                    cout << "========== Event " << counter << " ==========" << endl;
+                    printEvent(info(currentEvent));
+                } else if(eventParticipant) {
+                    showParticipantsInEvent(currentEvent);
+                }
+            }
+            break;
+        }
+        case SHOW_ONLY_NOT_AVAILABLE: {
+            if(info(currentEvent).jumlah == info(currentEvent).quota_maks) {
+                if(eventData && eventParticipant) {
+                    cout << "========== Event " << counter << " ==========" << endl;
+                    printEvent(info(currentEvent));
+                    showParticipantsInEvent(currentEvent);
+                } else if(eventData) {
+                    cout << "========== Event " << counter << " ==========" << endl;
+                    printEvent(info(currentEvent));
+                } else if(eventParticipant) {
+                    showParticipantsInEvent(currentEvent);
+                }
+            }
+            break;
+        }
     }
 }
 
@@ -171,6 +227,29 @@ adr_event searchEvent(events events, string eventName) {
     }
 
     return found;
+}
+
+void joinEvent(adr_event adrEvent, adr_event_participant adrEventParticipant) {
+    if(info(adrEvent).quota_maks == info(adrEvent).jumlah) {
+        cout << "Mohon Maaf, kuota maksimal dari event ini sudah penuh. Anda dapat pilih event lain untuk diikuti" << endl;
+    } else {
+        if(participant(adrEvent) == NULL && lastParticipant(adrEvent) == NULL) {
+            participant(adrEvent) = adrEventParticipant;
+            lastParticipant(adrEvent) = adrEventParticipant;
+        } else {
+            prev(adrEventParticipant) = lastParticipant(adrEvent);
+            next(lastParticipant(adrEvent)) = adrEventParticipant;
+            lastParticipant(adrEvent) = adrEventParticipant;
+        }
+    }
+}
+
+adr_event_participant createElmEventParticipant(adr_participant adrParticipant) {
+    adr_event_participant adrEventParticipant = new elmEventParticipant;
+    info(adrEventParticipant) = adrParticipant;
+    next(adrEventParticipant) = NULL;
+    prev(adrEventParticipant) = NULL;
+    return adrEventParticipant;
 }
 
 void createParticipants(participants &participants) {
@@ -214,6 +293,21 @@ void showParticipants(participants participants) {
     }
 }
 
+void showParticipantsInEvent(adr_event adrEvent) {
+    if(participant(adrEvent) == NULL && lastParticipant(adrEvent) == NULL && info(adrEvent).jumlah == 0) {
+        cout << "Tidak memiliki participant" << endl;
+    } else {
+        adr_event_participant trace = participant(adrEvent);
+        int counter = 1;
+        while(trace != NULL) {
+            cout << "============= Peserta " << counter << " =============" << endl;
+            printParticipant(info(info(trace)));
+            counter += 1;
+            trace = next(trace);
+        }
+    }
+}
+
 void printParticipant(participant participant) {
     cout << "Nomor peserta : " << participant.no_peserta << endl;
     cout << "Nomor tempat duduk : " << participant.no_tempat_duduk << endl;
@@ -221,4 +315,40 @@ void printParticipant(participant participant) {
     cout << "Email : " << participant.email << endl;
     cout << "Jenis peserta : " << participant.jenis_peserta << endl;
     cout << "Nomor telpon : " << participant.no_telp << endl;
+}
+
+adr_participant searchParticipant(participants participants, string participantEmail) {
+    adr_participant found = NULL;
+
+    if(first(participants) == NULL && last(participants) == NULL){
+        cout << "Empty List" << endl;
+    }else{
+        adr_participant trace = first(participants);
+        while(trace != NULL && found == NULL){
+            if(info(trace).email == participantEmail) {
+                found = trace;
+            }
+            trace = next(trace);
+        }
+    }
+
+    return found;
+}
+
+adr_event_participant searchParticipantInEvent(adr_event adrEvent, string participantEmail) {
+    adr_event_participant found = NULL;
+
+    if(participant(adrEvent) == NULL && lastParticipant(adrEvent) == NULL) {
+        cout << "Tidak ada peserta dalam event ini" << endl;
+    } else {
+        adr_event_participant trace = participant(adrEvent);
+        while(trace != NULL && found == NULL) {
+            if(info(info(trace)).email == participantEmail) {
+                found = trace;
+            }
+            trace = next(trace);
+        }
+    }
+
+    return found;
 }

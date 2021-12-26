@@ -8,6 +8,7 @@
 #include <iostream>
 #include "event.h"
 #include "participant.h"
+#include "event_participant.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ using namespace std;
 #define next(P) (P)->next
 #define prev(P) (P)->prev
 #define participant(P) (P)->participant
+#define lastParticipant(P) (P)->lastParticipant
 #define first(H) ((H).first)
 #define last(H) ((H).last)
 
@@ -32,6 +34,10 @@ const int REMOVE_PARTICIPANT = 10;
 const int SHOW_PARTICIPANTS = 11; // This feature only use for development process
 const int SHOW_EVENTS = 12; // This feature only use for development process
 
+const int SHOW_ALL = 1;
+const int SHOW_ONLY_AVAILABLE = 2;
+const int SHOW_ONLY_NOT_AVAILABLE = 3;
+
 void showMenu();
 
 void createEvents(events &events);
@@ -41,14 +47,21 @@ void deleteFirstEvent(events &events, adr_event &adrEvent);
 void deleteLastEvent(events &events, adr_event &adrEvent);
 void deleteAfterEvent(adr_event adrEventPrec, adr_event &adrEvent);
 void deleteEvent(events &events, string eventName, adr_event &deletedEvent);
-void showEvents(events events);
+void showEvents(events events, int showFlag = SHOW_ALL, bool eventData = true, bool eventParticipant = false);
 void printEvent(event event);
+void showEventWithFlag(adr_event currentEvent, int showFlag, bool eventData, bool eventParticipant, int counter);
 adr_event searchEvent(events events, string eventName);
+void joinEvent(adr_event adrEvent, adr_event_participant adrEventParticipant);
+
+adr_event_participant createElmEventParticipant(adr_participant adrParticipant);
 
 void createParticipants(participants &participants);
 adr_participant createElmParticipant(participant participant);
 void insertParticipant(participants &participants, adr_participant adrParticipant);
 void showParticipants(participants participants);
+void showParticipantsInEvent(adr_event adrEvent);
 void printParticipant(participant participant);
+adr_participant searchParticipant(participants participants, string participantEmail);
+adr_event_participant searchParticipantInEvent(adr_event adrEvent, string participantEmail);
 
 #endif //LINKED_LIST_APP_H
