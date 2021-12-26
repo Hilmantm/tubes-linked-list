@@ -3,4 +3,4 @@ project(linked_list)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(linked_list main.cpp event.h participant.h app.h app.cpp)
+add_executable(linked_list main.cpp event.h participant.h app.h app.cpp event_participant.h)

@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/app.cpp
+iostream
+-
+app.h
+/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/app.h
+
 /cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/app.h
 iostream
 -
@@ -13,20 +19,20 @@ event.h
 /cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/event.h
 participant.h
 /cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/participant.h
+event_participant.h
+/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/event_participant.h
 
 /cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/event.h
 iostream
 -
 participant.h
 /cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/participant.h
+event_participant.h
+/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/event_participant.h
 
-/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/main.cpp
-iostream
--
-stdlib.h
--
-app.h
-/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/app.h
+/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/event_participant.h
+participant.h
+/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/participant.h
 
 /cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/participant.h
 iostream

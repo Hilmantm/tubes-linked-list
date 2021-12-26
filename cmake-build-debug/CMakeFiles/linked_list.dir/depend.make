@@ -5,9 +5,11 @@ CMakeFiles/linked_list.dir/app.cpp.o: \
  ../app.cpp \
  ../app.h \
  ../event.h \
+ ../event_participant.h \
  ../participant.h
 CMakeFiles/linked_list.dir/main.cpp.o: \
  ../app.h \
  ../event.h \
+ ../event_participant.h \
  ../main.cpp \
  ../participant.h

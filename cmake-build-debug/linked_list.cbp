@@ -89,6 +89,9 @@
 		<Unit filename="/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/event.h">
 			<Option target="linked_list"/>
 		</Unit>
+		<Unit filename="/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/event_participant.h">
+			<Option target="linked_list"/>
+		</Unit>
 		<Unit filename="/cygdrive/d/DATA/KULIAH/Perkuliahan/Semester 3/CII2B4 - STRUKTUR DATA/Tugas Besar/linked-list/main.cpp">
 			<Option target="linked_list"/>
 		</Unit>
