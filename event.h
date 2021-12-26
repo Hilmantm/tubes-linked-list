@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "participant.h"
+#include "event_participant.h"
 
 using namespace std;
 
@@ -19,7 +20,8 @@ struct event {
 
 struct elmEvent {
     event info;
-    adr_participant participant;
+    adr_event_participant participant;
+    adr_event_participant lastParticipant;
     adr_event prev, next;
 };
 
