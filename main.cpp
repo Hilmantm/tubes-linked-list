@@ -24,7 +24,23 @@ int main() {
     while(choose != EXIT) {
         switch(choose) {
             case JOIN_EVENT: {
-                cout << "JOIN EVENT" << endl;
+                string eventName, participantEmail;
+                adr_event searchCurrentEvent;
+                adr_participant searchCurrentParticipant;
+                adr_event_participant newEventParticipant;
+
+                cout << "Nama event yang akan diikuti : "; cin.ignore(); getline(cin, eventName);
+                searchCurrentEvent = searchEvent(eventList, eventName);
+
+                if(searchCurrentEvent != NULL) {
+                    cout << "Email peserta yang akan diikut sertakan : "; cin >> participantEmail;
+                    searchCurrentParticipant = searchParticipant(participantsList, participantEmail);
+                    if(searchCurrentParticipant != NULL) {
+                        newEventParticipant = createElmEventParticipant(searchCurrentParticipant);
+                        joinEvent(searchCurrentEvent, newEventParticipant);
+                        cout << "Success invite participant " << participantEmail << " into " << eventName << endl;
+                    }
+                }
                 break;
             }
             case CANCEL_JOIN_EVENT: {
@@ -65,19 +81,41 @@ int main() {
                 break;
             }
             case SHOW_AVAILABLE_EVENTS: {
-                cout << "SHOW AVAILABLE EVENT" << endl;
+                showEvents(eventList, SHOW_ONLY_AVAILABLE);
                 break;
             }
             case SHOW_EVENTS_WITH_PARTICIPANT: {
-                cout << "SHOW EVENTS WITH PARTICIPANT" << endl;
+                showEvents(eventList, SHOW_ALL, true, true);
                 break;
             }
             case SHOW_PARTICIPANTS_IN_AN_EVENT: {
-                cout << "SHOW PARTICIPANTS IN AN EVENT" << endl;
+                string eventName;
+                adr_event searchCurrentEvent;
+
+                cout << "Masukkan nama event : "; cin.ignore(); getline(cin, eventName);
+
+                searchCurrentEvent = searchEvent(eventList, eventName);
+                if(searchCurrentEvent != NULL) {
+                    showParticipantsInEvent(searchCurrentEvent);
+                }
                 break;
             }
             case SEARCH_PARTICIPANT_IN_AN_EVENT: {
-                cout << "SHOW PARTICIPANTS IN AN EVENT" << endl;
+                string eventName, participantEmail;
+                adr_event searchCurrentEvent;
+                adr_event_participant searchCurrentEventParticipant;
+
+                cout << "Masukkan nama event : "; cin.ignore(); getline(cin, eventName);
+
+                searchCurrentEvent = searchEvent(eventList, eventName);
+                if(searchCurrentEvent != NULL) {
+                    cout << "Masukkan email peserta : "; cin >> participantEmail;
+                    searchCurrentEventParticipant = searchParticipantInEvent(searchCurrentEvent, participantEmail);
+                    if(searchCurrentEventParticipant != NULL) {
+                        cout << "Peserta dengan email " << participantEmail << " sudah terdaftar dalam event ini" << endl;
+                        printParticipant(info(info(searchCurrentEventParticipant)));
+                    }
+                }
                 break;
             }
             case REGISTER_PARTICIPANT: {
@@ -109,7 +147,7 @@ int main() {
                 break;
             }
             case SHOW_EVENTS: {
-                showEvents(eventList);
+                showEvents(eventList, SHOW_ALL, true, false);
                 break;
             }
         }
