@@ -241,6 +241,7 @@ void joinEvent(adr_event adrEvent, adr_event_participant adrEventParticipant) {
             next(lastParticipant(adrEvent)) = adrEventParticipant;
             lastParticipant(adrEvent) = adrEventParticipant;
         }
+        info(adrEvent).jumlah += 1;
     }
 }
 
@@ -351,4 +352,135 @@ adr_event_participant searchParticipantInEvent(adr_event adrEvent, string partic
     }
 
     return found;
+}
+
+void deleteFirstParticipant(participants &participants, adr_participant &adrParticipant) {
+    if(first(participants) == NULL && last(participants) == NULL) {
+        cout << "List kosong" << endl;
+    } else {
+        adrParticipant = first(participants);
+        if(first(participants) == last(participants)) {
+            first(participants) = NULL;
+            last(participants) = NULL;
+        } else {
+            first(participants) = next(adrParticipant);
+            next(adrParticipant) = NULL;
+            prev(first(participants)) = NULL;
+        }
+    }
+}
+
+void deleteLastParticipant(participants &participants, adr_participant &adrParticipant) {
+    if(first(participants) == NULL && last(participants) == NULL) {
+        cout << "List kosong" << endl;
+    } else {
+        adrParticipant = last(participants);
+        if(first(participants) == last(participants)) {
+            first(participants) = NULL;
+            last(participants) = NULL;
+        } else {
+            last(participants) = prev(last(participants));
+            prev(adrParticipant) = NULL;
+            next(last(participants)) = NULL;
+        }
+    }
+}
+
+void deleteAfterParticipant(adr_participant adrParticipantPrec, adr_participant &adrParticipant) {
+    adrParticipant = next(adrParticipantPrec);
+    next(adrParticipantPrec) = next(adrParticipant);
+    prev(next(adrParticipant)) = adrParticipantPrec;
+    prev(adrParticipant) = NULL;
+    next(adrParticipant) = NULL;
+}
+
+void removeParticipant(participants &participants, string participantEmail, adr_participant &adrParticipant) {
+    // search the participant
+    adr_participant searchParticipantData = searchParticipant(participants, participantEmail);
+
+    // check participant position
+    if(searchParticipantData != NULL) {
+        // checking order
+        // - if the searchParticipantData is in first order
+        // - if the searchParticipantData is in last order
+        // - if the searchParticipantData is in middle order
+        if(searchParticipantData == first(participants)) {
+            deleteFirstParticipant(participants, adrParticipant);
+        } else if(searchParticipantData == last(participants)) {
+            deleteLastParticipant(participants, adrParticipant);
+        } else {
+            deleteAfterParticipant(prev(searchParticipantData), adrParticipant);
+        }
+    } else {
+        cout << "Peserta yang dicari tidak ada" << endl << endl;
+    }
+}
+
+void cancelEvent(adr_event adrEvent, adr_event_participant adrEventParticipant, adr_event_participant &deletedEventParticipant) {
+    if(participant(adrEvent) == NULL && lastParticipant(adrEvent) == NULL) {
+        cout << "Tidak ada data peserta" << endl;
+    } else {
+        deleteEventParticipant(adrEvent, adrEventParticipant, deletedEventParticipant);
+        info(adrEvent).jumlah -= 1;
+    }
+}
+
+void deleteFirstEventParticipant(adr_event adrEvent, adr_event_participant &adrEventParticipant) {
+    if(participant(adrEvent) == NULL && lastParticipant(adrEvent) == NULL) {
+        cout << "Tidak ada peserta" << endl;
+    } else {
+        adrEventParticipant = participant(adrEvent);
+        if(participant(adrEvent) == lastParticipant(adrEvent)) {
+            participant(adrEvent) = NULL;
+            lastParticipant(adrEvent) = NULL;
+        } else {
+            participant(adrEvent) = next(adrEventParticipant);
+            next(adrEventParticipant) = NULL;
+            prev(participant(adrEvent)) = NULL;
+        }
+    }
+}
+
+void deleteLastEventParticipant(adr_event adrEvent, adr_event_participant &adrEventParticipant) {
+    if(participant(adrEvent) == NULL && lastParticipant(adrEvent) == NULL) {
+        cout << "Tidak ada peserta" << endl;
+    } else {
+        adrEventParticipant = lastParticipant(adrEvent);
+        if(participant(adrEvent) == lastParticipant(adrEvent)) {
+            participant(adrEvent) = NULL;
+            lastParticipant(adrEvent) = NULL;
+        } else {
+            lastParticipant(adrEvent) = prev(lastParticipant(adrEvent));
+            prev(adrEventParticipant) = NULL;
+            next(lastParticipant(adrEvent)) = NULL;
+        }
+    }
+}
+
+void deleteAfterEventParticipant(adr_event_participant adrEventParticipantPrec, adr_event_participant &adrEventParticipant) {
+    adrEventParticipant = next(adrEventParticipantPrec);
+    next(adrEventParticipantPrec) = next(adrEventParticipant);
+    prev(next(adrEventParticipant)) = adrEventParticipantPrec;
+    prev(adrEventParticipant) = NULL;
+    next(adrEventParticipant) = NULL;
+}
+
+void deleteEventParticipant(adr_event &adrEvent, adr_event_participant adrEventParticipant, adr_event_participant &deletedEventParticipant) {
+
+    // check participant position
+    if(adrEventParticipant != NULL) {
+        // checking order
+        // - if the searchParticipantData is in first order
+        // - if the searchParticipantData is in last order
+        // - if the searchParticipantData is in middle order
+        if(adrEventParticipant == participant(adrEvent)) {
+            deleteFirstEventParticipant(adrEvent, deletedEventParticipant);
+        } else if(adrEventParticipant == lastParticipant(adrEvent)) {
+            deleteLastEventParticipant(adrEvent, deletedEventParticipant);
+        } else {
+            deleteAfterEventParticipant(prev(adrEventParticipant), deletedEventParticipant);
+        }
+    } else {
+        cout << "Peserta yang dicari tidak ada" << endl << endl;
+    }
 }

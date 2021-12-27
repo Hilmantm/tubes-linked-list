@@ -52,12 +52,21 @@ void printEvent(event event);
 void showEventWithFlag(adr_event currentEvent, int showFlag, bool eventData, bool eventParticipant, int counter);
 adr_event searchEvent(events events, string eventName);
 void joinEvent(adr_event adrEvent, adr_event_participant adrEventParticipant);
+void cancelEvent(adr_event adrEvent, adr_event_participant adrEventParticipant, adr_event_participant &deletedEventParticipant);
 
 adr_event_participant createElmEventParticipant(adr_participant adrParticipant);
+void deleteFirstEventParticipant(adr_event adrEvent, adr_event_participant &adrEventParticipant);
+void deleteLastEventParticipant(adr_event adrEvent, adr_event_participant &adrEventParticipant);
+void deleteAfterEventParticipant(adr_event_participant adrEventParticipantPrec, adr_event_participant &adrEventParticipant);
+void deleteEventParticipant(adr_event &adrEvent, adr_event_participant adrEventParticipant, adr_event_participant &deletedEventParticipant);
 
 void createParticipants(participants &participants);
 adr_participant createElmParticipant(participant participant);
 void insertParticipant(participants &participants, adr_participant adrParticipant);
+void deleteFirstParticipant(participants &participants, adr_participant &adrParticipant);
+void deleteLastParticipant(participants &participants, adr_participant &adrParticipant);
+void deleteAfterParticipant(adr_participant adrParticipantPrec, adr_participant &adrParticipant);
+void removeParticipant(participants &participants, string participantEmail, adr_participant &adrParticipant);
 void showParticipants(participants participants);
 void showParticipantsInEvent(adr_event adrEvent);
 void printParticipant(participant participant);

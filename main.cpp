@@ -44,7 +44,24 @@ int main() {
                 break;
             }
             case CANCEL_JOIN_EVENT: {
-                cout << "CANCEL JOIN EVENT" << endl;
+                string eventName, participantEmail, ask;
+                adr_event searchCurrentEvent;
+                adr_event_participant searchCurrentParticipant, deletedEventParticipant;
+
+                cout << "Nama event yang akan diikuti : "; cin.ignore(); getline(cin, eventName);
+                searchCurrentEvent = searchEvent(eventList, eventName);
+
+                if(searchCurrentEvent != NULL) {
+                    cout << "Email peserta yang akan dibatalkan : "; cin >> participantEmail;
+                    searchCurrentParticipant = searchParticipantInEvent(searchCurrentEvent, participantEmail);
+                    if(searchCurrentParticipant != NULL) {
+                        cout << "Yakin ingin membatalkan? (Y/N) : "; cin >> ask;
+                        if(ask == "Y" || ask == "y") {
+                            cancelEvent(searchCurrentEvent, searchCurrentParticipant, deletedEventParticipant);
+                            cout << "Success cancel participant " << participantEmail << " from " << eventName << endl;
+                        }
+                    }
+                }
                 break;
             }
             case ADD_EVENT: {
@@ -139,7 +156,16 @@ int main() {
                 break;
             }
             case REMOVE_PARTICIPANT: {
-                cout << "REMOVE PARTICIPANT" << endl;
+                string participantEmail;
+                adr_participant deletedParticipant, searchDeletedParticipant;
+
+                cout << "Masukkan email peserta yang akan dihapus : "; cin >> participantEmail;
+                removeParticipant(participantsList, participantEmail, deletedParticipant);
+
+                searchDeletedParticipant = searchParticipant(participantsList, participantEmail);
+                if(searchDeletedParticipant == NULL) {
+                    cout << "Success remove " << participantEmail << endl;
+                }
                 break;
             }
             case SHOW_PARTICIPANTS: {
