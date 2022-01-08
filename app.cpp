@@ -1,7 +1,3 @@
-//
-// Created by Hilman Taris M on 12/25/2021.
-//
-
 #include <iostream>
 #include "app.h"
 

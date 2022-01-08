@@ -1,7 +1,3 @@
-//
-// Created by Hilman Taris M on 12/25/2021.
-//
-
 #ifndef LINKED_LIST_APP_H
 #define LINKED_LIST_APP_H
 

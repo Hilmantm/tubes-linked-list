@@ -1,7 +1,3 @@
-//
-// Created by Hilman Taris M on 12/26/2021.
-//
-
 #ifndef LINKED_LIST_EVENT_PARTICIPANT_H
 #define LINKED_LIST_EVENT_PARTICIPANT_H
 
